@@ -1,0 +1,248 @@
+PASS __tests__/screens/AppointmentDetailScreen.test.js (9.568 s)
+  AppointmentDetailScreen
+    ✓ mostra os dados do agendamento (4834 ms)
+    ✓ mostra o horário do lembrete (1 hora antes) quando a notificação foi agendada (8 ms)
+    ✓ sem lembrete agendado o aviso não aparece (6 ms)
+    ✓ agendamento concluído não mostra aviso de lembrete (5 ms)
+    ✓ concluir atualiza o status, cancela o lembrete e volta (13 ms)
+    ✓ cancelar pede confirmação antes de alterar (76 ms)
+    ✓ agendamento concluído não oferece mais ações (5 ms)
+    ✓ id fora da lista (ainda não sincronizado) é buscado no Firestore (10 ms)
+    ✓ agendamento inexistente mostra "não encontrado" (8 ms)
+
+PASS __tests__/screens/NewAppointmentScreen.test.js
+  NewAppointmentScreen
+    ✓ aplica as máscaras de telefone e placa (906 ms)
+    ✓ formulário vazio mostra aviso e NÃO salva (26 ms)
+    ✓ exige ao menos um serviço e um horário (124 ms)
+    ✓ horários ocupados ficam desabilitados (56 ms)
+    ✓ salva, dispara notificações e abre a tela de detalhes (327 ms)
+    ✓ falha na notificação não impede o agendamento (193 ms)
+    ✓ erro do Firebase (horário tomado) é mostrado e nada navega (148 ms)
+
+PASS __tests__/navigation/AppNavigator.test.js (6.176 s)
+  AppNavigator (navegação)
+    ✓ carregando sessão mostra indicador de progresso (31 ms)
+    ✓ deslogado => tela de Login (753 ms)
+    ✓ logado => abas Agendar / Agenda / Painel (137 ms)
+
+PASS __tests__/screens/LoginScreen.test.js
+  LoginScreen
+    ✓ renderiza campos e botões (62 ms)
+    ✓ o campo de senha é protegido (secureTextEntry) (5 ms)
+    ✓ envia e-mail e senha digitados para o signIn (11 ms)
+    ✓ mostra a mensagem de erro quando o login falha (24 ms)
+    ✓ "Criar conta" navega para a tela de cadastro (10 ms)
+
+PASS __tests__/screens/DashboardScreen.test.js
+  DashboardScreen
+    ✓ mostra saudação e estatísticas (62 ms)
+    ✓ lista de próximos não inclui cancelados (14 ms)
+    ✓ botão Sair chama signOut (8 ms)
+
+PASS __tests__/screens/AgendaScreen.test.js
+  AgendaScreen (FlatList)
+    ✓ lista todos os agendamentos ordenados por data e horário (46 ms)
+    ✓ filtro "Hoje" mostra só os de hoje (17 ms)
+    ✓ filtro "Pendentes" esconde os concluídos (17 ms)
+    ✓ busca por placa (13 ms)
+    ✓ mostra mensagem de lista vazia quando nada é encontrado (22 ms)
+    ✓ mostra "Carregando" enquanto os dados não chegam (4 ms)
+    ✓ mostra erro de carregamento (5 ms)
+    ✓ tocar em um item abre os detalhes com o id (10 ms)
+
+PASS __tests__/screens/RegisterScreen.test.js
+  RegisterScreen
+    ✓ cadastra com os dados informados (131 ms)
+    ✓ exibe erro vindo do cadastro (ex.: senhas diferentes) (132 ms)
+    ✓ "Já tenho conta" volta para o login (13 ms)
+
+PASS __tests__/context/AuthContext.test.js
+  AuthContext
+    ✓ sem sessão salva começa deslogado (10 ms)
+    ✓ restaura a sessão salva ao abrir o app (3 ms)
+    ✓ signIn autentica e salva a sessão (8 ms)
+    ✓ signUp cria a conta e já entra (3 ms)
+    ✓ signOut limpa a sessão (4 ms)
+    ✓ falha no login propaga o erro e mantém deslogado (2 ms)
+
+PASS __tests__/context/AppointmentsContext.test.js
+  AppointmentsContext
+    ✓ assina o Firestore, atualiza a lista em tempo real e cancela a escuta ao desmontar (10 ms)
+    ✓ guarda a mensagem de erro de conexão (2 ms)
+
+PASS __tests__/services/notificationService.test.js
+  configuração
+    ✓ define o handler e cria o canal de notificações no Android (2 ms)
+  permissão
+    ✓ já concedida: não pergunta de novo (1 ms)
+    ✓ pede ao usuário quando ainda não concedida (1 ms)
+    ✓ usuário nega (1 ms)
+  notificação de confirmação
+    ✓ dispara imediatamente (trigger null) com dados do agendamento (1 ms)
+    ✓ sem permissão não agenda nada
+  lembrete
+    ✓ agenda 1 hora antes do horário marcado (10 ms)
+    ✓ não agenda se o horário do lembrete já passou (1 ms)
+    ✓ cancelReminder cancela pelo id e ignora id vazio (1 ms)
+
+PASS __tests__/context/ToastContext.test.js
+  ToastContext
+    ✓ showToast exibe a mensagem (25 ms)
+    ✓ useToast fora do Provider não quebra (2 ms)
+
+PASS __tests__/services/authService.test.js
+  registerUser
+    ✓ grava só o HASH da senha (com salt) e e-mail em minúsculas (4 ms)
+    ✓ dois usuários com a mesma senha recebem hashes diferentes (salt) (1 ms)
+    ✓ aceita senha com acentos (1 ms)
+    ✓ recusa e-mail já cadastrado (2 ms)
+    ✓ valida os campos antes de consultar o Firebase (2 ms)
+  loginUser
+    ✓ login correto devolve o usuário sem a senha (10 ms)
+    ✓ senha errada (1 ms)
+    ✓ usuário inexistente
+    ✓ campos vazios (1 ms)
+  sessão local
+    ✓ salva, carrega e limpa (2 ms)
+
+PASS __tests__/components/AppointmentCard.test.js
+  AppointmentCard
+    ✓ mostra cliente, carro, placa, horário, data, serviços e status (20 ms)
+    ✓ status concluido exibe "Concluído" (3 ms)
+    ✓ status cancelado exibe "Cancelado" (3 ms)
+    ✓ sem status assume confirmado (3 ms)
+    ✓ ao tocar chama onPress com o agendamento (2 ms)
+
+PASS __tests__/services/appointmentService.test.js
+  createAppointment
+    ✓ salva com status confirmado e data de criação (11 ms)
+    ✓ recusa horário já ocupado (1 ms)
+    ✓ horário de agendamento cancelado pode ser reutilizado
+  leitura e atualização
+    ✓ subscribeAppointments converte os documentos e devolve o unsubscribe (1 ms)
+    ✓ getAppointmentById existente e inexistente (2 ms)
+    ✓ updateAppointmentStatus grava só o status (1 ms)
+
+PASS __tests__/utils/dates.test.js
+  datas
+    ✓ toISODate usa a data LOCAL (não UTC) (1 ms)
+    ✓ addDays atravessa mês e ano (1 ms)
+    ✓ isValidISODate (10 ms)
+    ✓ formatDate curto e completo (1 ms)
+    ✓ buildDateOptions gera N dias começando por "Hoje" (1 ms)
+    ✓ formatTime mostra HH:MM com zero à esquerda
+    ✓ buildDateTime junta data e horário
+    ✓ getReminderDate = 60 min antes por padrão
+    ✓ getReminderDate com antecedência personalizada atravessa a meia-noite (1 ms)
+
+PASS __tests__/utils/appointments.test.js
+  sortAppointments
+    ✓ ordena por data e depois por horário, sem alterar a lista original (10 ms)
+  filterAppointments
+    ✓ todos retorna tudo ordenado (1 ms)
+    ✓ hoje (1 ms)
+    ✓ semana = hoje até +7 dias (1 ms)
+    ✓ pendente = apenas confirmados
+    ✓ busca por nome, placa ou carro (sem diferenciar maiúsculas) (1 ms)
+    ✓ combina filtro e busca (1 ms)
+  getTakenSlots
+    ✓ retorna horários ocupados da data, ignorando cancelados (1 ms)
+  computeStats
+    ✓ conta total, hoje, confirmados e concluídos (1 ms)
+    ✓ lista vazia (1 ms)
+  getUpcoming
+    ✓ somente de hoje em diante e não cancelados (1 ms)
+    ✓ respeita o limite (1 ms)
+  getServiceIds
+    ✓ aceita lista, string antiga ou vazio (1 ms)
+
+PASS __tests__/utils/masks.test.js
+  maskPhone
+    ✓ maskPhone("") => "" (1 ms)
+    ✓ maskPhone("2") => "(2" (8 ms)
+    ✓ maskPhone("21") => "(21"
+    ✓ maskPhone("219") => "(21) 9" (1 ms)
+    ✓ maskPhone("21999998888") => "(21) 99999-8888" (1 ms)
+    ✓ maskPhone("(21) 99999-8888") => "(21) 99999-8888"
+    ✓ maskPhone("219999988889999") => "(21) 99999-8888" (1 ms)
+    ✓ maskPhone("abc21") => "(21"
+  maskPlate
+    ✓ maskPlate("") => ""
+    ✓ maskPlate("abc") => "ABC"
+    ✓ maskPlate("abc1234") => "ABC-1234" (1 ms)
+    ✓ maskPlate("abc-1d23") => "ABC-1D23"
+    ✓ maskPlate("abc12345678") => "ABC-1234" (1 ms)
+    ✓ maskPlate("a!b@c#1") => "ABC-1" (1 ms)
+
+PASS __tests__/utils/validation.test.js
+  validateAppointment
+    ✓ dados completos => sem erro (9 ms)
+    ✓ campo name inválido ("") (1 ms)
+    ✓ campo name inválido ("   ")
+    ✓ campo phone inválido ("") (1 ms)
+    ✓ campo car inválido ("") (1 ms)
+    ✓ campo date inválido ("")
+    ✓ campo services inválido ([])
+    ✓ campo slot inválido (null) (1 ms)
+  e-mail e senha
+    ✓ validateEmail (1 ms)
+    ✓ validatePassword exige 6+ caracteres e aceita acentos (1 ms)
+  validateRegister / validateLogin
+    ✓ cadastro válido (1 ms)
+    ✓ erros de cadastro (1 ms)
+    ✓ login (1 ms)
+
+PASS __tests__/utils/crypto.test.js
+  Hash de senha (SHA-256 + salt)
+    ✓ SHA-256 correto: confere com valor conhecido (2 ms)
+    ✓ o hash tem 64 caracteres hexadecimais e não contém a senha (1 ms)
+    ✓ é determinístico: mesma senha e mesmo salt => mesmo hash (1 ms)
+    ✓ salts diferentes geram hashes diferentes para a MESMA senha (1 ms)
+    ✓ senhas diferentes geram hashes diferentes (1 ms)
+    ✓ aceita acentos e símbolos na senha
+    ✓ generateSalt gera valores únicos
+    ✓ verifyPassword aceita a senha certa e recusa a errada (1 ms)
+    ✓ verifyPassword recusa quando faltam salt ou hash guardados
+
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+All files                    |    96.9 |     86.2 |   94.11 |   97.69 |                   
+ components                  |     100 |     92.1 |     100 |     100 |                   
+  AppointmentCard.js         |     100 |     87.5 |     100 |     100 | 27                
+  Button.js                  |     100 |     92.3 |     100 |     100 | 20,26             
+  EmptyState.js              |     100 |      100 |     100 |     100 |                   
+  Field.js                   |     100 |      100 |     100 |     100 |                   
+  SectionTitle.js            |     100 |      100 |     100 |     100 |                   
+ constants                   |     100 |      100 |     100 |     100 |                   
+  services.js                |     100 |      100 |     100 |     100 |                   
+ context                     |   98.38 |       50 |      88 |     100 |                   
+  AppointmentsContext.js     |     100 |       50 |     100 |     100 | 24                
+  AuthContext.js             |   96.42 |       50 |      75 |     100 | 26                
+  ToastContext.js            |     100 |      100 |     100 |     100 |                   
+ navigation                  |     100 |      100 |     100 |     100 |                   
+  AppNavigator.js            |     100 |      100 |     100 |     100 |                   
+ screens                     |   95.06 |    79.54 |   90.19 |   96.62 |                   
+  AgendaScreen.js            |     100 |      100 |     100 |     100 |                   
+  AppointmentDetailScreen.js |   93.33 |       75 |    92.3 |      95 | 41,62             
+  DashboardScreen.js         |    92.3 |       50 |   85.71 |     100 | 31                
+  LoginScreen.js             |     100 |    66.66 |     100 |     100 | 23-31             
+  NewAppointmentScreen.js    |   93.33 |    86.66 |   83.33 |   94.44 | 44-45,131         
+  RegisterScreen.js          |     100 |    66.66 |     100 |     100 | 25-33             
+ services                    |   93.42 |    82.92 |   95.45 |   93.84 |                   
+  appointmentService.js      |   94.44 |       75 |   88.88 |   93.75 | 23                
+  authService.js             |   94.11 |    94.44 |     100 |   93.33 | 14,67             
+  notificationService.js     |   91.66 |    73.33 |     100 |   94.73 | 23                
+ utils                       |     100 |    91.15 |     100 |     100 |                   
+  appointments.js            |     100 |    90.62 |     100 |     100 | 10,23,25          
+  crypto.js                  |     100 |    83.33 |     100 |     100 | 18                
+  dates.js                   |     100 |    82.35 |     100 |     100 | 14,43             
+  masks.js                   |     100 |    83.33 |     100 |     100 | 3,11              
+  validation.js              |     100 |    97.82 |     100 |     100 | 19                
+-----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 19 passed, 19 total
+Tests:       136 passed, 136 total
+Snapshots:   0 total
+Time:        21.155 s
+Ran all test suites.

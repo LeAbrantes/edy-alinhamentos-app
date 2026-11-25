@@ -1,0 +1,14 @@
+// Regras DIDÁTICAS para a disciplina (modo de teste).
+// O login do app é próprio (hash da senha na coleção "usuarios"), sem Firebase Auth,
+// por isso as regras ficam abertas. Em produção, use Firebase Auth + regras restritas.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /usuarios/{id} {
+      allow read, write: if true;
+    }
+    match /agendamentos/{id} {
+      allow read, write: if true;
+    }
+  }
+}
